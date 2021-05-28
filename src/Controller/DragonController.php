@@ -6,9 +6,13 @@ use App\Form\UpdateType;
 use App\Entity\IdCreature;
 use App\Repository\IdCreatureRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+
 
 class DragonController extends AbstractController
 {
@@ -20,7 +24,7 @@ class DragonController extends AbstractController
         $dragons = $repository->findAll();
     
         return $this->render('dragon/index.html.twig', [
-            'dragons' => $dragons
+            'dragons' => $dragons,
         ]);
     }
     /**
@@ -33,27 +37,29 @@ class DragonController extends AbstractController
         ]);
     }
     /**
+     * @Route("/iddragon/add", name="app_dragon_add")
      * @Route("/iddragon/edit/{id}", name="app_dragon_edit", requirements={"id"="\d+"})
      */
-    public function edit(IdCreature $creature): Response
+    public function edit(IdCreature $creature = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(UpdateType::class);
+        if(!$creature)
+        {
+            $creature = new IdCreature();
+        }
+        $form = $this->createForm(UpdateType::class, $creature);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($creature);
+            $entityManager->flush();
+            return $this->redirectToRoute("app_dragon_index");
+        }
 
         return $this->render('dragon/edit.html.twig', [
             'creature' => $creature,
-            'form' =>$form->createView()
+            'form' =>$form->createView(),
+            'isModification'=> $creature->getId() !== null,
         ]);
     }
-    /**
-     * @Route("/iddragon/create/{id}", name="app_dragon_create", requirements={"id"="\d+"})
-     */
-    public function collator_get_attribute(IdCreature $creature): Response
-    {
-        $form = $this->createForm(UpdateType::class);
 
-        return $this->render('dragon/edit.html.twig', [
-            'creature' => $creature,
-            'form' =>$form->createView()
-        ]);
-    }
 }

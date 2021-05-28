@@ -1,8 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DragonEdit{% endblock %}
+{% block title %}
+    {% if isModification %}
+        DragonEdit
+    {% else %}
+        NewDragon
+    {% endif %}
+{% endblock %}
 {% block body %}
-    <h1>Update</h1>
+    {% if isModification %}
+        <h1>Update</h1>
+    {% else %}
+        <h1>New</h1>
+    {% endif %}
+
     {{ form_start(form)}}
         {{ form_row(form.name, {"attr":{'class':'form'}})}}
         {{ form_row(form.description, {"attr":{'class':'form'}})}}
