@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DragonStore{% endblock %}
+
+{% block body %}
+    <h1>DragonStore</h1>
+
+    <div class="idfile">
+        {% for dragon in dragons %}
+            <h2>{{dragon.name}}</h2>
+            <p>Description: {{dragon.description}} </p>
+            <img src="{{asset('assets/images/' ~ dragon.image)}}" alt="dragon">
+            <a  id="file_perso" href="{{path("app_dragon_iddragon", {'id': dragon.id})}}">More</a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DragonProfil{% endblock %}
+
+{% block body %}
+    <h1>DragonProfil</h1>
+
+    <div class="idfile">
+            <h2>{{iddragon.name}}</h2>
+            <p>Description: {{iddragon.description}} </p>
+            <img src="{{asset('assets/images/' ~ iddragon.image)}}" alt="dragon">
+            <a href="{{ path('app_dragon_edit', {id:iddragon.id}) }}">Update</a>
+    </div>
+
+{% endblock %}

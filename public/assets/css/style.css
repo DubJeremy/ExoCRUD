@@ -1,0 +1,103 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 4em;
+    overflow: hidden;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+  }
+  
+  li {
+    float: left;
+    color: white;
+    margin-left: 2em;
+    font-size: large;
+
+  }
+
+  li:hover
+  {
+    color: rgb(139, 27, 27);
+    cursor: pointer;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+  footer
+  {
+    height: 3em;
+    width: 100%;
+    bottom: 0px;
+    position: fixed;
+    background-color: #333;
+  }
+  footer>p
+  {
+    color: white;
+    width: 5em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+#randomnumb 
+{
+  font-size: 5em;
+  width: 100%;
+  text-align: center;
+}
+h1
+{
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  text-align: center;
+  border: 2px solid rgb(185, 62, 62);
+}
+.idfile
+{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4em;
+}
+.idfile>img
+{
+  width: 300px;
+}
+form
+{
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10em;
+  display: flex;
+  flex-direction: column;
+}
+
+.form
+{
+  width: 20em;
+
+}
+label
+{
+  width: 10em;
+  height: 5em;
+  text-align: center;
+  color: red;
+}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DragonEdit{% endblock %}
+{% block body %}
+    <h1>Update</h1>
+    {{ form_start(form)}}
+        {{ form_row(form.name, {"attr":{'class':'form'}})}}
+        {{ form_row(form.description, {"attr":{'class':'form'}})}}
+        {{ form_row(form.image, {"attr":{'class':'form'}})}}
+        {{ form_widget(form) }}
+        <input type="submit" value="Save">
+    {{ form_end (form) }}
+{% endblock %}
